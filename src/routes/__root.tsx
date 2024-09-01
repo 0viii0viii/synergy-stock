@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+import { SearchBar } from '@/components/searchBar';
 
 export const Route = createRootRoute({
 	component: () => (
@@ -17,6 +18,7 @@ export const Route = createRootRoute({
 			>
 				<Flex align="center" justify="space-between" h="100%">
 					<span>왼쪽</span>
+					<SearchBar />
 					<span>오른쪽</span>
 				</Flex>
 			</Box>
