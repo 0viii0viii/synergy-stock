@@ -1,32 +1,28 @@
 import { AxiosResponse } from 'axios';
 
-import { GetPriceHistoryResponse } from '@/queries/price/type.ts';
-import { KisResponseType } from '@/types/kis.ts';
+import { PARAMS } from '@/constants/params.ts';
+import { PriceHistoryByPeriodParams, PriceHistoryByPeriodResponse } from '@/queries/price/type.ts';
 import { stockApi } from '@/utils/axios.ts';
 
-type CurrentPriceParams = {
-	marketCode: 'J'; // J = '주식'
-	stockCode: string; // 6 digits
-	periodCode: 'D' | 'W' | 'M';
-	orgAdjPrc: string; // 0 반영 1 미반영
-};
+// 주식 현재가 기간별 시세 (일/주/월/년)
 
-// 주식현재가 일자별 시세 조회
-export const getPriceHistory = async (params: CurrentPriceParams) => {
-	const { marketCode, stockCode, periodCode, orgAdjPrc } = params;
-	const res: AxiosResponse<KisResponseType<GetPriceHistoryResponse>> = await stockApi({
+export const getPriceHistoryByPeriod = async (params: PriceHistoryByPeriodParams & { signal: AbortSignal }) => {
+	const { marketCode, stockCode, periodCode, orgAdjPrc, startDate, endDate, signal } = params;
+	const res: AxiosResponse<PriceHistoryByPeriodResponse> = await stockApi({
 		method: 'GET',
-		url: '/uapi/domestic-stock/v1/quotations/inquire-daily-price',
+		url: '/uapi/domestic-stock/v1/quotations/inquire-daily-itemchartprice',
 		headers: {
-			// 거래ID
-			tr_id: 'FHKST01010100', // 주식현재가 시세
+			tr_id: 'FHKST03010100',
 		},
 		params: {
-			FID_COND_MRKT_DIV_CODE: marketCode,
-			FID_INPUT_ISCD: stockCode,
-			FID_PERIOD_DIV_CODE: periodCode,
-			FID_ORG_ADJ_PRC: orgAdjPrc,
+			[PARAMS.marketCode]: marketCode,
+			[PARAMS.stockCode]: stockCode,
+			[PARAMS.startDate]: startDate,
+			[PARAMS.endDate]: endDate,
+			[PARAMS.periodCode]: periodCode,
+			[PARAMS.orgAdjPrc]: orgAdjPrc,
 		},
+		signal,
 	});
-	return res.data.output;
+	return res.data;
 };

@@ -2,7 +2,6 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect } from 'react';
 
 import { retrieveAccessToken } from '@/queries/auth/api.ts';
-import { getPriceHistory } from '@/queries/price/api.ts';
 
 export const Route = createLazyFileRoute('/')({
 	component: Index,
@@ -16,10 +15,6 @@ function Index() {
 	useEffect(() => {
 		if (!token || isTokenExpired) retrieveAccessToken();
 	}, [isTokenExpired, token]);
-
-	useEffect(() => {
-		getPriceHistory({ marketCode: 'J', stockCode: '005930', periodCode: 'W', orgAdjPrc: '0' });
-	}, []);
 
 	return (
 		<div>
