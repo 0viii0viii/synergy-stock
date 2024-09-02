@@ -82,10 +82,15 @@ export const SearchBar = () => {
 									p="0 12px 3px 12px"
 									display="flex"
 									justifyContent="space-between"
+									alignItems="center"
 									cursor="pointer"
+									padding={4}
 									_hover={{ background: '#f6f6f6' }}
+									borderBottom="1px solid #e9e9e9"
 								>
-									<Text>{el.name}</Text>
+									<Text fontSize={16} fontWeight={500}>
+										{el.name}
+									</Text>
 									<Flex direction="column" textAlign="end">
 										<Text>{el.code}</Text>
 										<Text>{el.kind}</Text>
