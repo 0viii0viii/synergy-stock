@@ -1,32 +1,34 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
+
+import { Navbar } from '@/components/navbar';
 import { SearchBar } from '@/components/searchBar';
 
 export const Route = createRootRoute({
 	component: () => (
-		<>
-			<Box
-				as="header"
-				position="sticky"
-				zIndex="10"
-				h={14}
-				color="white"
-				bg="black"
-				boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 1px 2px 1px"
-				p={4}
-			>
-				<Flex align="center" justify="space-between" h="100%">
-					<span>왼쪽</span>
-					<SearchBar />
-					<span>오른쪽</span>
+		<Flex>
+			<Navbar />
+			<Flex flexDirection="column" flexGrow="1">
+				<Box
+					as="header"
+					position="sticky"
+					zIndex="10"
+					h={14}
+					color="white"
+					bg="black"
+					boxShadow="rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 1px 2px 1px"
+					p={4}
+				>
+					<Flex align="center" justify="center" h="100%">
+						<SearchBar />
+					</Flex>
+				</Box>
+				<Flex>
+					<Outlet />
 				</Flex>
-			</Box>
-			<Flex>
-				<Box as="nav" w="300px" h="calc(100vh - 56px)" borderRight="1px solid #e2e8f0"></Box>
-				<Outlet />
 			</Flex>
 			<TanStackRouterDevtools />
-		</>
+		</Flex>
 	),
 });
