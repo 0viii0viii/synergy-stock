@@ -1,19 +1,23 @@
-import { Box, IconButton, Input, List, ListItem, Text } from '@chakra-ui/react';
+import './styles.module.css';
+
 import { SearchIcon } from '@chakra-ui/icons';
-import { useMemo, useRef, useState } from 'react';
+import { Box, Flex, IconButton, Input, List, ListItem, Text } from '@chakra-ui/react';
 import { isEmpty, map } from 'lodash-es';
-import { kospiCodes } from '@/code/kospi.ts';
-import { kosdaqCodes } from '@/code/kosdaq.ts';
+import { useMemo, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
+
+import { kosdaqCodes } from '@/code/kosdaq.ts';
+import { kospiCodes } from '@/code/kospi.ts';
+
+const stockList = [
+	...map(kospiCodes, (code) => ({ ...code, kind: '코스피' })),
+	...map(kosdaqCodes, (code) => ({ ...code, kind: '코스닥' })),
+];
 
 export const SearchBar = () => {
 	const ref = useRef<HTMLDivElement | null>(null);
 	const [isFocus, setIsFocus] = useState<boolean>(true);
 	const [search, setSearch] = useState<string>('');
-	const stockList = [
-		...map(kospiCodes, (code) => ({ ...code, kind: '코스피' })),
-		...map(kosdaqCodes, (code) => ({ ...code, kind: '코스닥' })),
-	];
 
 	useClickAway(ref, () => setIsFocus(false));
 
@@ -23,6 +27,7 @@ export const SearchBar = () => {
 	};
 
 	const searchList = useMemo(() => {
+		if (isEmpty(search)) return [];
 		return stockList.filter(({ name, code }) => {
 			const normalizedSearch = search.replace(' ', '').toLowerCase();
 			const normalizedName = name.replace(' ', '').toLowerCase();
@@ -74,15 +79,17 @@ export const SearchBar = () => {
 						{searchList.map((el) => {
 							return (
 								<ListItem
-									p="0 12px"
+									p="0 12px 3px 12px"
 									display="flex"
 									justifyContent="space-between"
 									cursor="pointer"
 									_hover={{ background: '#f6f6f6' }}
 								>
-									<Text maxW="20%">{el.code}</Text>
-									<Text maxW="70%">{el.name}</Text>
-									<Text>{el.kind}</Text>
+									<Text>{el.name}</Text>
+									<Flex direction="column" textAlign="end">
+										<Text>{el.code}</Text>
+										<Text>{el.kind}</Text>
+									</Flex>
 								</ListItem>
 							);
 						})}
