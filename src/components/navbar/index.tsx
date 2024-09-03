@@ -1,4 +1,4 @@
-import { ChevronLeftIcon, ChevronRightIcon, HamburgerIcon } from '@chakra-ui/icons';
+import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Flex } from '@chakra-ui/react';
 import { Link } from '@tanstack/react-router';
 import { motion } from 'framer-motion';
@@ -10,8 +10,6 @@ export const Navbar = () => {
 	const onClickFold = useCallback(() => {
 		setIsFold((prev) => !prev);
 	}, []);
-
-	const ArrowIcon = !isFold ? ChevronLeftIcon : ChevronRightIcon;
 
 	return (
 		<Box
@@ -37,7 +35,7 @@ export const Navbar = () => {
 
 const NavItem = ({ children, url }: { url: string; children: React.ReactNode }) => {
 	return (
-		<Box w="100%" _hover={{ background: 'black', color: 'white' }}>
+		<Box m={2} _hover={{ background: '#8850F1', color: 'white', borderRadius: '10px', transition: '0.2s' }}>
 			<Link to={url}>
 				<Flex align="center" gap={4} p={4}>
 					{children}

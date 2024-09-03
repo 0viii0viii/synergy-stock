@@ -59,7 +59,7 @@ export const SearchBar = () => {
 				backgroundColor="unset"
 				position="absolute"
 				right={0}
-				_hover={{ background: 'unset' }}
+				_hover={{ background: 'unset', cursor: 'pointer' }}
 			/>
 			<Box
 				display={!isEmpty(search) && isFocus ? 'block' : 'none'}
