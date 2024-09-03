@@ -38,7 +38,7 @@ export const SearchBar = () => {
 	}, [search]);
 
 	return (
-		<Box position="relative" ref={ref} border="1px solid #EBEEF3" borderRadius="10px">
+		<Box position="relative" ref={ref} background="#F7F8FC" borderRadius="10px">
 			<Input
 				p={4}
 				border="none"

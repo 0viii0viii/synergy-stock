@@ -17,8 +17,8 @@ function Index() {
 	}, [isTokenExpired, token]);
 
 	return (
-		<div>
+		<>
 			<h3>HOME</h3>
-		</div>
+		</>
 	);
 }

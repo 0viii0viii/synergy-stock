@@ -15,7 +15,7 @@ export const Route = createRootRoute({
 						<SearchBar />
 					</Flex>
 				</Box>
-				<Flex>
+				<Flex h="100%" background="#F7F8FC">
 					<Outlet />
 				</Flex>
 			</Flex>
