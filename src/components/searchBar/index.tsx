@@ -38,9 +38,9 @@ export const SearchBar = () => {
 	}, [search]);
 
 	return (
-		<Box position="relative" borderBottom="1px solid #fff" ref={ref}>
+		<Box position="relative" ref={ref} border="1px solid #EBEEF3" borderRadius="10px">
 			<Input
-				p={0}
+				p={4}
 				border="none"
 				w="30rem"
 				maxW="90%"
@@ -51,10 +51,11 @@ export const SearchBar = () => {
 				onFocus={() => setIsFocus(true)}
 				placeholder="종목명 입력"
 				autoFocus={true}
+				color="#000"
 			/>
 			<IconButton
 				aria-label="search"
-				icon={<SearchIcon color="#fff" />}
+				icon={<SearchIcon />}
 				backgroundColor="unset"
 				position="absolute"
 				right={0}
@@ -75,7 +76,7 @@ export const SearchBar = () => {
 				color="#000"
 			>
 				{!isEmpty(searchList) ? (
-					<List p="13px 0 12px" listStyleType="none">
+					<List listStyleType="none">
 						{searchList.map((el) => {
 							return (
 								<ListItem
