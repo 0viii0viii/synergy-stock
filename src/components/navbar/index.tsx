@@ -1,33 +1,27 @@
 import { HamburgerIcon } from '@chakra-ui/icons';
 import { Box, Flex } from '@chakra-ui/react';
 import { Link } from '@tanstack/react-router';
-import { motion } from 'framer-motion';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 
-export const Navbar = () => {
-	const [isFold, setIsFold] = useState(false);
+type NavbarProps = {
+	isOpen: boolean;
+	setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-	const onClickFold = useCallback(() => {
-		setIsFold((prev) => !prev);
+export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
+	const onClickOpen = useCallback(() => {
+		setIsOpen((prev) => !prev);
 	}, []);
 
 	return (
-		<Box
-			as={motion.nav}
-			initial={{ width: 250 }}
-			animate={{ width: isFold ? 50 : 250 }}
-			exit={{ width: 50 }}
-			overflow="hidden"
-			h="100vh"
-			borderRight="1px solid #EBEEF3"
-		>
+		<Box overflow="hidden" w="15rem" h="100vh" borderRight="1px solid #EBEEF3">
 			<Flex direction="column">
 				<Box p={4} fontWeight="bold" fontSize={20}>
-					<HamburgerIcon onClick={onClickFold} mr="1rem" cursor="pointer" w={6} h={6} />
-					{!isFold ? <Link to="/">SYNERGY STOCK</Link> : null}
+					<HamburgerIcon onClick={onClickOpen} mr="1rem" cursor="pointer" w={6} h={6} />
+					<Link to="/">SYNERGY STOCK</Link>
 				</Box>
-				<NavItem url="/favourite-live">{isFold ? 'A' : '실시간 관심 종목'}</NavItem>
-				<NavItem url="/favourite">{isFold ? 'B' : '관심 종목'}</NavItem>
+				<NavItem url="/favourite-live">{isOpen ? '실시간 관심 종목' : 'A'}</NavItem>
+				<NavItem url="/favourite">{isOpen ? '관심 종목' : 'B'}</NavItem>
 			</Flex>
 		</Box>
 	);
