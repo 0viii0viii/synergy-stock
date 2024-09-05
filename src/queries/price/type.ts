@@ -61,6 +61,6 @@ type Output2 = {
 	prdy_vrss_sign: string; // 전일 대비 부호
 	prdy_vrss: string; // 전일 대비
 	revl_issu_reas: string; // 재평가사유코드
-}[];
+};
 
 export type PriceHistoryByPeriodResponse = KisResponseType2<Output1, Output2>;
