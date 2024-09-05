@@ -2,6 +2,7 @@ import './styles.module.css';
 
 import { SearchIcon } from '@chakra-ui/icons';
 import { Box, Flex, IconButton, Input, List, ListItem, Text } from '@chakra-ui/react';
+import { Link } from '@tanstack/react-router';
 import { isEmpty, map } from 'lodash-es';
 import { useMemo, useRef, useState } from 'react';
 import { useClickAway } from 'react-use';
@@ -79,25 +80,27 @@ export const SearchBar = () => {
 					<List listStyleType="none">
 						{searchList.map((el) => {
 							return (
-								<ListItem
-									key={el.code}
-									p="0 12px 3px 12px"
-									display="flex"
-									justifyContent="space-between"
-									alignItems="center"
-									cursor="pointer"
-									padding={4}
-									_hover={{ background: '#f6f6f6' }}
-									borderBottom="1px solid #e9e9e9"
-								>
-									<Text fontSize={16} fontWeight={500}>
-										{el.name}
-									</Text>
-									<Flex direction="column" textAlign="end">
-										<Text>{el.code}</Text>
-										<Text>{el.kind}</Text>
-									</Flex>
-								</ListItem>
+								<Link to="/item/$stockCode" params={{ stockCode: el.code }}>
+									<ListItem
+										key={el.code}
+										p="0 12px 3px 12px"
+										display="flex"
+										justifyContent="space-between"
+										alignItems="center"
+										cursor="pointer"
+										padding={4}
+										_hover={{ background: '#f6f6f6' }}
+										borderBottom="1px solid #e9e9e9"
+									>
+										<Text fontSize={16} fontWeight={500}>
+											{el.name}
+										</Text>
+										<Flex direction="column" textAlign="end">
+											<Text>{el.code}</Text>
+											<Text>{el.kind}</Text>
+										</Flex>
+									</ListItem>
+								</Link>
 							);
 						})}
 					</List>
