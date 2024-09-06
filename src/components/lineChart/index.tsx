@@ -13,8 +13,8 @@ import {
 import { BaseAxisProps } from 'recharts/types/util/types';
 
 type LineChartProps = {
-	width: number;
-	height: number;
+	width: number | string;
+	height: number | string;
 	data: any;
 	margin?: { top?: number; left?: number; right?: number; bottom?: number };
 	xTickFormatter?: BaseAxisProps['tickFormatter'];
