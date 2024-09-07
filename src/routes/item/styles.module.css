@@ -1,0 +1,10 @@
+.tableWrapper {
+    thead td:not(:last-child), tbody td:not(:last-child) {
+        border-bottom: 1px solid #e6e6e6;
+        border-right: 1px solid #e6e6e6;
+    }
+
+    tbody td {
+        color: #666;
+    }
+}

@@ -1,4 +1,5 @@
 import { AxiosResponse } from 'axios';
+import { sortBy } from 'lodash-es';
 
 import { PARAMS } from '@/constants/params.ts';
 import { PriceHistoryByPeriodParams, PriceHistoryByPeriodResponse } from '@/queries/price/type.ts';
@@ -24,5 +25,5 @@ export const getPriceHistoryByPeriod = async (params: PriceHistoryByPeriodParams
 		},
 		signal,
 	});
-	return res.data;
+	return { ...res.data, output2: sortBy(res.data.output2, 'stck_bsop_date') };
 };
