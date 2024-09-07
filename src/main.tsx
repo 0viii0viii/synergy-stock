@@ -19,7 +19,7 @@ const queryClient = new QueryClient();
 
 const theme = extendTheme({
 	fonts: {
-		body: 'WantedSans, system-ui, sans-serif',
+		body: 'LINESeed, system-ui, sans-serif',
 	},
 });
 
