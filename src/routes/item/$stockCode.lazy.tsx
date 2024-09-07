@@ -29,9 +29,9 @@ function Index() {
 		<Box p={10} w="100%">
 			<Flex direction="column" gap={4}>
 				<Flex justifyContent="space-between" alignItems="end">
-					<Flex direction="column" fontSize="11px">
+					<Flex direction="column" fontSize={11}>
 						<Flex gap={2} alignItems="end">
-							<Text fontWeight="bold" fontSize="20px" color="#333">
+							<Text fontWeight="bold" fontSize={20} color="#333">
 								{detail?.hts_kor_isnm}
 							</Text>
 							<Text color="#666" fontWeight="bold">

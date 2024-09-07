@@ -46,7 +46,7 @@ export const LineChart = ({ width, height, data, margin, xDataKey, lineDataKey, 
 	return (
 		<ResponsiveContainer width={width} height={height}>
 			<LineChartComponent data={data} margin={margin}>
-				<CartesianGrid strokeDasharray="3 3" />
+				<CartesianGrid vertical={false} stroke="#EBEEF3" />
 				<XAxis dataKey={xDataKey} tickFormatter={xTickFormatter} fontSize={12} />
 				<YAxis fontSize={12} tickFormatter={(value) => value.toLocaleString()} />
 				<Tooltip isAnimationActive={false} content={<CustomizedTooltip />} />

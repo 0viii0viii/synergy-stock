@@ -16,7 +16,7 @@ export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
 	return (
 		<Box overflow="hidden" w="15rem" h="100vh" borderRight="1px solid #EBEEF3">
 			<Flex direction="column">
-				<Box p={4} fontWeight="bold" fontSize={20}>
+				<Box p={4} fontWeight="bold" fontSize={19}>
 					<HamburgerIcon onClick={onClickOpen} mr="1rem" cursor="pointer" w={6} h={6} />
 					<Link to="/">SYNERGY STOCK</Link>
 				</Box>
