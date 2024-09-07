@@ -80,9 +80,8 @@ export const SearchBar = () => {
 					<List listStyleType="none">
 						{searchList.map((el) => {
 							return (
-								<Link to="/item/$stockCode" params={{ stockCode: el.code }}>
+								<Link key={el.code} to="/item/$stockCode" params={{ stockCode: el.code }} onClick={() => setSearch('')}>
 									<ListItem
-										key={el.code}
 										p="0 12px 3px 12px"
 										display="flex"
 										justifyContent="space-between"
