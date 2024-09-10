@@ -133,7 +133,7 @@ function Index() {
 				<Flex background="#fff" w="100%" h="40vh" borderRadius="10px" p="10px" direction="column" alignItems="end">
 					<Box>
 						<Select w="5.5rem" onChange={onChangeDate} icon={<CalendarIcon />}>
-							<option value={startDate}>1일</option>
+							<option value={formattedDate(referenceDate)}>1일</option>
 							<option value={getFormattedDate('day', 7)}>1주일</option>
 							<option value={getFormattedDate('year', 1)}>1년</option>
 							<option value={getFormattedDate('year', 3)}>3년</option>
