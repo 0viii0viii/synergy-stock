@@ -16,10 +16,16 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const WatchlistLazyImport = createFileRoute('/watchlist')()
 const IndexLazyImport = createFileRoute('/')()
 const ItemStockCodeLazyImport = createFileRoute('/item/$stockCode')()
 
 // Create/Update Routes
+
+const WatchlistLazyRoute = WatchlistLazyImport.update({
+  path: '/watchlist',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/watchlist.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -44,6 +50,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/watchlist': {
+      id: '/watchlist'
+      path: '/watchlist'
+      fullPath: '/watchlist'
+      preLoaderRoute: typeof WatchlistLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/item/$stockCode': {
       id: '/item/$stockCode'
       path: '/item/$stockCode'
@@ -58,6 +71,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexLazyRoute,
+  WatchlistLazyRoute,
   ItemStockCodeLazyRoute,
 })
 
@@ -70,11 +84,15 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/watchlist",
         "/item/$stockCode"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/watchlist": {
+      "filePath": "watchlist.lazy.tsx"
     },
     "/item/$stockCode": {
       "filePath": "item/$stockCode.lazy.tsx"

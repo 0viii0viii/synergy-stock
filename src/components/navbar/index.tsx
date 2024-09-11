@@ -21,7 +21,7 @@ export const Navbar = ({ isOpen, setIsOpen }: NavbarProps) => {
 					<Link to="/">SYNERGY STOCK</Link>
 				</Box>
 				<NavItem url="/favourite-live">{isOpen ? '실시간 관심 종목' : 'A'}</NavItem>
-				<NavItem url="/favourite">{isOpen ? '관심 종목' : 'B'}</NavItem>
+				<NavItem url="/watchlist">{isOpen ? '관심 종목' : 'B'}</NavItem>
 			</Flex>
 		</Box>
 	);
